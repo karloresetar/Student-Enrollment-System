@@ -1,6 +1,10 @@
 {% extends 'base.html' %} {% block content %}
-<form method="post">
-    {{form.as_p}} {% csrf_token %}
-    <input class='mysubmit' type="submit" value="Prijava"/>
-</form>
+<div class="center">
+    <div class="form-container">
+        <form method="post">
+            {{ form.as_p }} {% csrf_token %}
+            <input class="mysubmit" type="submit" value="Prijava" />
+        </form>
+    </div>
+</div>
 {% endblock %}

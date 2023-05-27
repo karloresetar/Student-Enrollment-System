@@ -12,13 +12,22 @@
     <title>Document</title>
 </head>
 <body>
-    <nav><ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-    </ul></nav>
-
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    
     {% block content %}{% endblock %}
     
+    <footer>
+        <p>
+            © PNI Karlo Rešetar 2023. god.
+        </p>
+    </footer>
 </body>
 </html>

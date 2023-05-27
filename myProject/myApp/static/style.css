@@ -1,3 +1,128 @@
-body{
-    background-color: aquamarine;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #35424a;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    text-transform: uppercase;
+    color: rgb(238, 238, 235);
+}
+
+p {
+    color: rgb(238, 238, 235);
+}
+
+a {
+    color: rgb(190, 97, 10);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 2px solid rgb(190, 97, 10);
+}
+
+header a {
+    color: rgb(238, 238, 235);
+}
+
+footer {
+    margin-top: auto;
+    border-top: 2px solid rgb(190, 97, 10);
+    flex-shrink: 0;
+}
+
+footer p {
+    display: flex;
+    justify-content: center;
+    padding: 34px;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgb(238, 238, 235);
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding: 0;
+    overflow: hidden;
+    text-transform: uppercase;
+    color: rgb(238, 238, 235);
+}
+
+li {
+    display: inline;
+}
+
+li:first-child {
+    margin-right: auto;
+}
+
+li:last-child {
+    margin-left: auto;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+/* Login form */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px); /* Adjust this value according to your footer's height */
+}
+
+.form-container {
+    width: 300px;
+    background-color: #645e5e7a;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    width: 100px;
+    padding: 10px 20px;
+    background-color:rgb(190, 97, 10);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color:rgb(165, 86, 12);
 }
