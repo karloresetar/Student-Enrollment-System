@@ -1,7 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 {% csrf_token %}
-
+<div class="main-section">
 <h2>Welcome {{ request.user.username|capfirst }}</h2>
+{% if request.user.role|lower == 'admin' %}
+    <p>If you want to add new user click: <a href="{% url 'adduser' %}">here</a></p>
+{% endif %}
+</div>
 
 {% csrf_token %}
 

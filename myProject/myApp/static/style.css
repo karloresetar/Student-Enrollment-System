@@ -87,6 +87,14 @@ li a:hover {
     background-color: #111;
 }
 
+/* ispis na home pageu */
+.main-section{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
 /* Login form */
 .center {
     display: flex;
