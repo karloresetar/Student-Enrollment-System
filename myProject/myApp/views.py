@@ -21,3 +21,19 @@ def adduser(request):
             message = 'Error, user is not created successfully'
 
     return render(request, 'add_user.html', {'form': form, 'message': message})
+
+
+def addsubject(request):
+    message = None
+    if request.method == 'GET':
+        form = PredmetiForm()
+    elif request.method == 'POST':
+        form = PredmetiForm(request.POST)
+        if form.is_valid():
+            form.save()
+            message = 'Subject created successfully'
+            form = PredmetiForm()
+        else:
+            message = 'Error, subject could not be created'
+    
+    return render(request,'add_subject.html',{'form':form,'message':message})

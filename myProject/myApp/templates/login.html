@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block content %}
+{% csrf_token %}
 <div class="center">
     <div class="form-container">
         <form method="post">
@@ -7,4 +8,5 @@
         </form>
     </div>
 </div>
+{% csrf_token %}
 {% endblock %}
