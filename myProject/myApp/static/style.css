@@ -26,6 +26,8 @@ a {
     color: rgb(190, 97, 10);
 }
 
+/* Header i navbar */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -37,6 +39,41 @@ header {
 header a {
     color: rgb(238, 238, 235);
 }
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    text-transform: uppercase;
+    color: rgb(238, 238, 235);
+}
+
+.lg-nav{
+    display:flex;
+    justify-content: end;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+/* Footer */
 
 footer {
     margin-top: auto;
@@ -53,40 +90,6 @@ footer p {
     color: rgb(238, 238, 235);
 }
 
-ul {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-    padding: 0;
-    overflow: hidden;
-    text-transform: uppercase;
-    color: rgb(238, 238, 235);
-}
-
-li {
-    display: inline;
-}
-
-li:first-child {
-    margin-right: auto;
-}
-
-li:last-child {
-    margin-left: auto;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #111;
-}
-
 /* ispis na home pageu */
 .main-section{
     display: flex;
@@ -95,12 +98,12 @@ li a:hover {
     flex-direction: column;
 }
 
-/* Login form */
+/* CSS ZA FORME */
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 192px); /* Adjust this value according to your footer's height */
+    min-height: calc(100vh - 192px);
 }
 
 .form-container {
