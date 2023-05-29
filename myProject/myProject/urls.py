@@ -27,4 +27,10 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('home/', views.home, name='home'),
     path('addsubject/', views.addsubject, name='addsubject'),
+    path('addsubholder/<int:id>/', views.addSubjectHolder, name='addsubholder'),
+    path('subjectlist/', views.subjectlist, name='subjectlist'),
+    path('subjectdetails/<int:id>', views.subjectdetails, name='subjectdetails'),
+    path('editsubject/<int:id>', views.editsubject, name='editsubject'),
+    path('deletesubject/<int:id>', views.deletesubject, name='deletesubject'),
+    path('students_subject/<int:predmet_id>/', views.students_subject, name='students_subject'),
 ]

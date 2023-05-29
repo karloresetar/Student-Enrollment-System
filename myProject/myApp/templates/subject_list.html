@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="main-section">
+    {% if request.user.role|lower == 'admin' %}
+    <p style="font-weight: 600;">Add New Subject:  <a href="{% url 'addsubject' %}">Dodaj predmet</a></p>
+</div>
+    <h2>List of subjects:</h2>
+    {% for predmet in predmeti %}
+
+        <p class="subject-line">{{ predmet.name }}
+        <a href="{% url 'subjectdetails' predmet.id %}">Details</a>&nbsp;
+        <a href="{% url 'editsubject' predmet.id %}">Edit</a>&nbsp;
+        <a href="{% url 'deletesubject' predmet.id %}">Delete</a>&nbsp;
+        <a href="{% url 'addsubholder' predmet.id %}">Professor</a>&nbsp;
+        <a href="{% url 'students_subject' predmet.id %}">Studenti</a>
+        </p>
+        <hr class="subject-line-divider">
+{% endfor %}
+
+{% else %}
+
+    <div class="main-section">
+        <p>You have no rights to access this page.</p>
+    </div>
+
+{% endif %}
+{% endblock %}

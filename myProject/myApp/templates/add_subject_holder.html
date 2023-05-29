@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+{% csrf_token %}
+<div class="main-section">
+    {% if request.user.role|lower == 'admin' %}
+
+    <h2>Add professor as holder of subject: {{predmet.name}}</h2>
+
+    {% if data.profesori.count == 0 %}
+
+    <h4>Empty</h4>
+
+    {% else %}
+
+    <p>Professor has been selected!</p>
+    <form method="post">
+        {% csrf_token %}
+        <p>Select professor:
+            <select name="profesor">
+                <option>----</option>
+                {% for profesor in profesori %}
+                <option {% if profesor.id == predmet.nositelj.id %} selected {% endif %}> {{profesor}}</option>
+                {% endfor %}
+            </select>
+        <input type="hidden" name="profz" value="{{ profesor}}"/>
+        <input type="submit" value="Add professor"/>
+        </p>
+
+    </form>
+</div>
+{% csrf_token %}
+{% endif %}
+{% else %}
+    
+    <div class="main-section">
+        <p>You have no rights to access this page.</p>
+    </div>
+
+{% endif %}
+{% endblock %}
+
+
