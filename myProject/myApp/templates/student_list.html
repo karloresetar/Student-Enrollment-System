@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+
+
+{% if request.user.role|lower == 'admin' %}
+
+<p style="font-weight: 600; text-align:center; padding:20px;">If you want to add new user click: <a href="{% url 'adduser' %}">here</a></p>
+
+
+
+<h2 style="padding-left:5px;">List of students:</h2>
+{% for user in users %}
+    {% if user.role.role == 'student' %}
+        <p style="padding-left:15px;">{{ user.first_name }} {{ user.last_name }} - {{user}}</p>
+        {% comment %} <a href="{% url 'edituser' user.id %}">Edit</a>
+        <a href="{% url 'deleteuser' user.id %}">Delete</a>
+        <a href="{% url 'upisni' user.id %}">Upisni list</a> {% endcomment %}
+    {% endif %}
+{% endfor %}
+
+
+{% else %}
+
+<div class="main-section">
+    <p>You have no rights to access this page.</p>
+</div>
+
+{% endif %}
+{% endblock %}

@@ -111,6 +111,16 @@ def students_subject(request,predmet_id):
     predmet=Predmeti.objects.get(id = predmet_id)
     upis = Upisi.objects.filter(subject=predmet)
     return render(request, "students_subject.html", {'upisani': upis, "predmet": predmet})
+
+def studentlist(request):
+    users = Korisnik.objects.all()
+    students = users.filter(role__role='student')
+    return render(request, "student_list.html", {'users': users, 'students': students})
             
+
+def profesorlist(request):
+    users = Korisnik.objects.all()
+    professors = users.filter(role__role='profesor')
+    return render(request,'profesor_list.html',{'users':users,'professors':professors})
 
 
