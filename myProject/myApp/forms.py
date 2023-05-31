@@ -7,6 +7,12 @@ class UserForm(UserCreationForm):
         model = Korisnik
         fields = ['username','first_name','last_name','email','role','status','password1','password2']
 
+class UserFormEdit(ModelForm):
+    class Meta:
+        model = Korisnik
+        fields = ['first_name', 'last_name', 'email', 'role', 'status']
+
+
 class PredmetiForm(ModelForm):
     class Meta:
         model = Predmeti

@@ -35,4 +35,5 @@ urlpatterns = [
     path('studentsubject/<int:predmet_id>/', views.students_subject, name='students_subject'),
     path('studentlist/', views.studentlist, name='studentlist'),
     path('profesorlist/', views.profesorlist, name='profesorlist'),
+    path('edituser/<int:id>', views.edituser, name='edituser'),
 ]
