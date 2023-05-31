@@ -36,4 +36,5 @@ urlpatterns = [
     path('studentlist/', views.studentlist, name='studentlist'),
     path('profesorlist/', views.profesorlist, name='profesorlist'),
     path('edituser/<int:id>', views.edituser, name='edituser'),
+    path('deleteuser/<int:id>', views.deleteuser, name='deleteuser'),
 ]

@@ -155,4 +155,23 @@ def edituser(request, id):
 
 
 
+
+def deleteuser(request, id):
+    user = Korisnik.objects.get(id=id)
+    if request.method == 'POST':
+        if 'yes' in request.POST:
+            user.delete()
+            messages.success(request, 'User deleted successfully!')
+            user_role = user.role.role 
+
+            if user_role == 'student':
+                return redirect('studentlist')
+            elif user_role == 'profesor':
+                return redirect('profesorlist')
+        else:
+            messages.error(request, 'Error, user could not be deleted')
+    return render(request, "delete_user.html", {'user': user})
+
+
+
 #Student, professor (Users) section -----

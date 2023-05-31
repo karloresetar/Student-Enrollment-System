@@ -2,7 +2,7 @@
 {% if request.user.role|lower == 'admin' %}
 <div class="main-section">
     <form method="POST">
-    <p>Are you sure that you want to delete the subject: {{subject.name}}</p>
+    <p>Are you sure that you want to delete the user: {{user.first_name}} {{user.last_name}} {{user}}</p>
     {% csrf_token %}
     <div class="decision">
         <input type="submit" name="yes" value="yes" />

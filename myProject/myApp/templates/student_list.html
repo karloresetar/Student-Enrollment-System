@@ -12,8 +12,8 @@
     {% if user.role.role == 'student' %}
         <p style="padding-left:15px;">{{ user.first_name }} {{ user.last_name }} - {{user}}
         <a href="{% url 'edituser' user.id %}">Edit</a>
-        {% comment %} <a href="{% url 'deleteuser' user.id %}">Delete</a>
-        <a href="{% url 'upisni' user.id %}">Upisni list</a> {% endcomment %}
+        <a href="{% url 'deleteuser' user.id %}">Delete</a>
+        {% comment %} <a href="{% url 'upisni' user.id %}">Upisni list</a> {% endcomment %}
         </p>
     {% endif %}
 {% endfor %}
