@@ -8,13 +8,17 @@
 
 
 <h2 style="padding-left:5px;">List of professors:</h2>
+<hr class="line-divider">
 {% for user in users %}
     {% if user.role.role == 'profesor' %}
-        <p style="padding-left:15px;">{{ user.first_name }} {{ user.last_name }} - {{user}}
-        <a href="{% url 'edituser' user.id %}">Edit</a>
-        <a href="{% url 'deleteuser' user.id %}">Delete</a>
-        {% comment %} <a href="{% url 'mysubjects' user.id %}">Subjects</a> {% endcomment %}
+        <p style="padding-left:10px;">{{ user.first_name }} {{ user.last_name }} - {{user}}
+            <div class="a-list-text">
+                <a href="{% url 'edituser' user.id %}">Edit</a>
+                <a href="{% url 'deleteuser' user.id %}">Delete</a>
+                {% comment %} <a href="{% url 'mysubjects' user.id %}">Subjects</a> {% endcomment %}
+            </div>
         </p>
+        <hr class="line-divider">
     {% endif %}
 {% endfor %}
 

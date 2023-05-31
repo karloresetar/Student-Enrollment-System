@@ -151,9 +151,14 @@ input[type="submit"]:hover {
 }
 
 
-/* Subject line */
-.subject-line-divider {
+/* lines for lists */
+.line-divider {
     border-top: 1px solid #ccc;
     margin-top: 10px;
+}
+
+.a-list-text{
+    text-transform: uppercase;
+    padding-left:10px;
 }
   

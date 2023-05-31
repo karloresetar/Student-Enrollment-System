@@ -2,17 +2,20 @@
 {% block content %}
 {% if request.user.role|lower == 'admin' %}
 <p style="font-weight: 600; text-align:center;">Add New Subject:  <a href="{% url 'addsubject' %}">Dodaj predmet</a></p>
-<h2>List of subjects:</h2>
+<h2 style="padding-left:10px;">List of subjects:</h2>
+<hr class="line-divider">
     {% for predmet in predmeti %}
 
-        <p class="subject-line">{{ predmet.name }}
-        <a href="{% url 'subjectdetails' predmet.id %}">Details</a>&nbsp;
-        <a href="{% url 'editsubject' predmet.id %}">Edit</a>&nbsp;
-        <a href="{% url 'deletesubject' predmet.id %}">Delete</a>&nbsp;
-        <a href="{% url 'addsubholder' predmet.id %}">Professor</a>&nbsp;
-        <a href="{% url 'students_subject' predmet.id %}">Studenti</a>
+        <p style="padding-left:10px;">{{ predmet.name }}
+            <div class="a-list-text">
+                <a href="{% url 'subjectdetails' predmet.id %}">Details</a>&nbsp;
+                <a href="{% url 'editsubject' predmet.id %}">Edit</a>&nbsp;
+                <a href="{% url 'deletesubject' predmet.id %}">Delete</a>&nbsp;
+                <a href="{% url 'addsubholder' predmet.id %}">Professor</a>&nbsp;
+                <a href="{% url 'students_subject' predmet.id %}">Studenti</a>
+            </div>
         </p>
-        <hr class="subject-line-divider">
+        <hr class="line-divider">
 {% endfor %}
 
 {% else %}
