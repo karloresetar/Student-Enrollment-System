@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+{% csrf_token %}
+
+
+{% if request.user.role|lower == 'admin' or request.user.id == profesor.id %}
+<h2 style="font-weight: 600; text-align:center; padding:20px;">Predmeti profesora {{profesor.first_name}} {{profesor.last_name}} - {{profesor.email}}: </h2>
+<hr class="line-divider">
+{% for predmet in predmeti %}
+
+    {% if predmet.nositelj.id == profesor.id %}
+    <p style="padding-left:10px;">{{predmet.name}}
+        <div class="a-list-text">
+            <a href="{% url 'subjectdetails' predmet.id %}">Details</a>&nbsp;
+            <a href="{% url 'studentlistsubject' predmet.id %}">Popis studenata</a>
+        </div>
+    </p>
+    <hr class="line-divider">
+    {% endif %}
+
+{% endfor %}
+
+
+
+{% else %}
+
+<div class="main-section">
+    <p>You have no rights to access this page.</p>
+</div>
+
+{% endif %}
+{% csrf_token %}
+{% endblock %}

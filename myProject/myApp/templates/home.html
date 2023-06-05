@@ -3,7 +3,26 @@
 <div class="main-section">
 <h2>Welcome {{ request.user.username|capfirst }}</h2>
 {% if request.user.role|lower == 'admin' %}
-    <p>If you want to add new user click: <a href="{% url 'adduser' %}">here</a></p>
+<section id="admin-panel">
+    <div class="box-podrucje">
+        <div class="zasebni-box">
+            <a href="{% url 'addsubject' %}" target="_blank"><div class="img-podrucje"></div></a>
+            <div class="img-text">
+                <span class ="header-text"><strong>ADD SUBJECT</strong></span>
+                <p>Click on the icon above to add subject.
+                </p>
+            </div>
+        </div>
+        <div class="zasebni-box">
+            <a href="{% url 'adduser' %}" target="_blank"><div class="img-podrucje"></div></a>
+            <div class="img-text">
+                <span class ="header-text"><strong>ADD USER</strong></span>
+                <p>Click on the icon above to add user.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endif %}
 </div>
 

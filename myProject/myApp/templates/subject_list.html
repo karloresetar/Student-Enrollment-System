@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
 {% if request.user.role|lower == 'admin' %}
-<p style="font-weight: 600; text-align:center;">Add New Subject:  <a href="{% url 'addsubject' %}">Dodaj predmet</a></p>
+<p style="font-weight: 600; text-align:center; padding:20px;">Add New Subject:  <a href="{% url 'addsubject' %}">Dodaj predmet</a></p>
 <h2 style="padding-left:10px;">List of subjects:</h2>
 <hr class="line-divider">
     {% for predmet in predmeti %}

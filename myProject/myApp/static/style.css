@@ -4,6 +4,106 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+/* BUTTONS AND UPISNI */
+.btn-add {
+    width: 80px;
+    line-height: 20px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    margin-right: 10px;
+    background-color:rgb(190, 97, 10);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.btn-delete {
+    width: 80px;
+    line-height: 20px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    margin-right: 10px;
+    background-color:rgb(190, 97, 10);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.btn-pass{
+    background: #149e20;
+    border-radius: 5px;
+    color: white;
+    width: 100px;
+    line-height: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-lost{
+    background: #000000;
+    border-radius: 5px;
+    color: white;
+    width: 150px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btn-return{
+    background: #4E9CAF;
+    border-radius: 5px;
+    color: white;
+    width: 110px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.upisnilist{
+    padding: 20px;
+}
+
+
+.left-section{
+    width: 50%;
+    float: left;
+
+}
+
+.left-section a{
+    text-transform: uppercase;
+}
+.right-section{
+    width: 50%;
+    float: right;
+
+}
+
+.right-section a{
+    text-transform: uppercase;
+    color: rgb(238, 238, 235);
+}
+
+/* BUTTONS AND UPISNI */
+
 body {
     display: flex;
     flex-direction: column;
@@ -50,6 +150,8 @@ ul {
     color: rgb(238, 238, 235);
 }
 
+
+
 .lg-nav{
     display:flex;
     justify-content: end;
@@ -67,10 +169,85 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 li a:hover {
-    background-color: #111;
+    color: rgb(190, 97, 10);
+    transition: .5s;
+}
+
+
+/* ADMIN HOME BOXOVI */
+
+#admin-panel h2{
+    text-align: center;
+    color:rgb(238, 238, 235);
+    margin-top: 20px;
+}
+
+.box-podrucje{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.zasebni-box{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: auto;
+    border-radius: 4px;
+    background-color:rgba(192, 192, 182, 0.452);
+    text-align: center;
+    margin:50px;
+    padding: 20px;
+}
+
+/* rgb(192, 192, 182); stara boja boxova */ 
+
+.img-podrucje{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border:4px solid rgb(219, 149, 84);
+    border-radius: 50%;
+    margin: 15px;
+    padding: 50px;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* rgb(216, 152, 189); stara boja za border */
+
+.zasebni-box:nth-child(1) .img-podrucje{
+    background-image: url(../img/1.jpg);
+}
+
+.zasebni-box:nth-child(2) .img-podrucje{
+    background-image: url(../img/2.jpg);
+}
+
+.header-text{
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 48px;
+}
+
+.img-text p{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.zasebni-box:hover{
+    background:rgb(204, 204, 149);
+    transition: .4s;
 }
 
 /* Footer */

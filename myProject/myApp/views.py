@@ -87,6 +87,11 @@ def students_subject(request,predmet_id):
     upis = Upisi.objects.filter(subject=predmet)
     return render(request, "students_subject.html", {'upisani': upis, "predmet": predmet})
 
+def profesorsubjects(request, profesor_id):
+    predmeti = Predmeti.objects.filter(nositelj = profesor_id)
+    profesor = Korisnik.objects.get(id = profesor_id)
+    return render(request, "profesor_subjects.html", {'predmeti': predmeti, 'profesor': profesor})
+
 # Nositelj
 def addSubjectHolder(request, id):
     predmet = get_object_or_404(Predmeti, id=id)
@@ -175,3 +180,65 @@ def deleteuser(request, id):
 
 
 #Student, professor (Users) section -----
+
+
+#Upisni CRUD section -----
+def createupis(student_id, predmet_id, status):
+    student = Korisnik.objects.get(id=student_id)
+    predmet = Predmeti.objects.get(id=predmet_id)
+    
+    if Upisi.objects.filter(student=student, subject=predmet).exists():
+        return
+    
+    Upisi.objects.create(student=student, subject=predmet, status=status)
+
+def deleteupis(student_id,predmet_id):
+    upis = Upisi.objects.filter(student = student_id, subject = predmet_id)
+    upis.delete()
+
+def upisni(request,student_id):
+    predmeti = Predmeti.objects.all()
+    student = Korisnik.objects.get(id = student_id)
+    upisni = Upisi.objects.filter(student = student.id)
+    upisani = upisni.values_list('subject', flat=True)
+
+    if request.method =='POST':
+        status = request.POST['status']
+        predmet_id = request.POST['predmet_id']
+        if(status == 'upisan'):
+            createupis(student_id,predmet_id,status)
+        elif(status == 'ispis'):
+            deleteupis(student_id,predmet_id)
+
+        
+    data = {
+        "predmeti": predmeti,
+        "student": student,
+        "upisani": upisani,
+        "upisni":upisni
+    }
+    
+    return render(request,"upisni_list.html",data)
+
+
+
+
+def updateupis(student_id,predmet_id,status):
+    upis = Upisi.objects.get(student=student_id, subject=predmet_id)
+    upis.status = status
+    upis.save()
+
+def studentlistsubject(request,predmet_id):
+    predmet = Predmeti.objects.get(id=predmet_id)
+    upis = Upisi.objects.filter(subject=predmet)
+
+    if request.method == 'POST':
+        status = request.POST['status']
+        student_id = request.POST['student_id']
+        updateupis(student_id,predmet_id,status)
+
+    return render(request,"student_list_subject.html", {'upisani':upis, 'predmet':predmet})
+
+
+#Upisni CRUD section -----
+

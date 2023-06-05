@@ -15,7 +15,7 @@
             <div class="a-list-text">
                 <a href="{% url 'edituser' user.id %}">Edit</a>
                 <a href="{% url 'deleteuser' user.id %}">Delete</a>
-                {% comment %} <a href="{% url 'mysubjects' user.id %}">Subjects</a> {% endcomment %}
+                <a href="{% url 'profesorsubjects' user.id %}">Subjects</a>
             </div>
         </p>
         <hr class="line-divider">

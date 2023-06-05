@@ -1,0 +1,167 @@
+{% extends 'base.html' %} {% block content %}
+
+{% if request.user.role|lower == 'admin' or request.user.role|lower == 'student' and request.user.id == student.id %}
+
+<div class="upisnilist">
+    <h1 style="text-align:center; padding:20px;">{{student.first_name}} {{student.last_name}}'s Upisni list - {{student.email}}</h1>
+
+    {% comment %} LISTA PREDMETA {% endcomment %}
+    <div class="left-section">
+        <h2>Neupisani predmeti:</h2>
+        {% if student.status == 'red' %}
+            {% with ''|center:6 as range %}
+                {% for _ in range %}
+                    <h3>Semestar {{forloop.counter}}:</h3>
+                    {% for predmet in predmeti %}
+                        {% if predmet.sem_red == forloop.parentloop.counter and predmet.id not in upisani %}                   
+                            <form method="post">
+                                <p>{{predmet}} 
+                            &nbsp;<a href="{% url 'subjectdetails' predmet.id %}">Details</a>                       
+                                {% csrf_token %}
+                                <input type="hidden" name="predmet_id" value="{{ predmet.id }}" />
+                                <button class='btn-add' type="submit" name="status" value="upisan">Add</button>    
+                                </p>                     
+                            </form>                                                         
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+
+        {% elif student.status == 'izv' %}
+            {% with ''|center:8 as range %}
+                {% for _ in range %}
+                    <h3>Semestar {{forloop.counter}}:</h3>
+                    {% for predmet in predmeti %}
+                        {% if predmet.sem_izv == forloop.parentloop.counter and predmet.id not in upisani %}                                           
+                                <form method="post">
+                                    <p>{{predmet}} 
+                                &nbsp;<a href="{% url 'subjectdetails' predmet.id %}">Details</a>  
+                            
+                                    {% csrf_token %}
+                                    <input type="hidden" name="predmet_id" value="{{ predmet.id }}" />
+                                    <button class='btn-add' type="submit" name="status" value="upisan">Add</button>    
+                                    </p>                     
+                                </form>
+    
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+
+        {% endif %}
+    </div>
+
+
+
+    <div class="right-section">
+
+        {% comment %} UPISANI PREDMETI {% endcomment %}
+        <h2>Upisani predmeti:</h2>
+        {% if student.status == 'red' %}
+            {% with ''|center:6 as range %}
+                {% for _ in range %}          
+                    {% for upis in upisni %}
+                        {% if upis.subject.sem_red == forloop.parentloop.counter and upis.status == 'upisan' %}                   
+                            <form method="post">
+                                <p style="color: rgb(10, 178, 190);">Semestar {{forloop.parentloop.counter}} - {{upis.subject.name}} 
+                            &nbsp;<a href="{% url 'subjectdetails' upis.subject.id %}">Details</a>  
+                        
+                                {% csrf_token %}
+                                <input type="hidden" name="predmet_id" value="{{ upis.subject.id }}" />
+                                <button class='btn-delete' type="submit" name="status" value="ispis">Delete</button>    
+                                </p>                     
+                            </form>               
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+
+        {% elif student.status == 'izv' %}
+            {% with ''|center:8 as range %}
+                {% for _ in range %}          
+                    {% for upis in upisni %}
+                        {% if upis.subject.sem_izv == forloop.parentloop.counter and upis.status == 'upisan' %}                   
+                                <form method="post">
+                                    <p style="color: rgb(10, 178, 190);">Semestar {{forloop.parentloop.counter}} - {{upis.subject.name}} 
+                                &nbsp;<a href="{% url 'subjectdetails' upis.subject.id %}">Details</a>  
+                            
+                                    {% csrf_token %}
+                                    <input type="hidden" name="predmet_id" value="{{ upis.subject.id }}" />
+                                    <button class='btn-delete' type="submit" name="status" value="ispis">Delete</button>    
+                                    </p>                     
+                                </form>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+        {% endif %}
+
+        {% comment %} POLOZENI PREDMET {% endcomment %}
+        <h2>Položeni predmeti:</h2>
+        {% if student.status == 'red' %}
+            {% with ''|center:6 as range %}
+                {% for _ in range %}          
+                    {% for upis in upisni %}
+                        {% if upis.subject.sem_red == forloop.parentloop.counter and upis.status == 'polozen' %}                   
+                            <p style="color: rgb(16, 190, 10);">Semestar {{forloop.parentloop.counter}} - {{upis.subject}} 
+                            <a href="{% url 'subjectdetails' upis.subject.id %}">Details</a></p>               
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+
+        {% elif student.status == 'izv' %}
+            {% with ''|center:8 as range %}
+                {% for _ in range %}          
+                    {% for upis in upisni %}
+                        {% if upis.subject.sem_izv == forloop.parentloop.counter and upis.status == 'polozen' %}                   
+                            <p style="color: rgb(16, 190, 10);">Semestar {{forloop.parentloop.counter}} - {{upis.subject}} 
+                            <a href="{% url 'subjectdetails' upis.subject.id %}">Details</a></p>                  
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+        {% endif %}
+        
+        
+        
+        {% comment %} PREDMETI KOJE SE NIJE PROSLO {% endcomment %}
+        <h2>Nepoloženi predmeti:</h2>
+        {% if student.status == 'red' %}
+            {% with ''|center:6 as range %}
+                {% for _ in range %}          
+                    {% for upis in upisni %}
+                        {% if upis.subject.sem_red == forloop.parentloop.counter and upis.status == 'izgubio/la pravo' %}                   
+                            <p style="color: rgb(190, 10, 10);">Semestar {{forloop.parentloop.counter}} - {{upis.subject}} 
+                            <a href="{% url 'subjectdetails' upis.subject.id %}">Details</a></p>               
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+
+        {% elif student.status == 'izv' %}
+            {% with ''|center:8 as range %}
+                {% for _ in range %}          
+                    {% for upis in upisni %}
+                        {% if upis.subject.sem_izv == forloop.parentloop.counter and upis.status == 'izgubio/la pravo' %}                   
+                            <p style="color: rgb(190, 10, 10);">Semestar {{forloop.parentloop.counter}} - {{upis.subject}} 
+                            <a href="{% url 'subjectdetails' upis.subject.id %}">Details</a></p>                  
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endwith %}
+        {% endif %}
+        
+    </div>  
+
+</div>
+
+
+{% else %}
+
+<div class="main-section">
+    <p>You have no rights to access this page.</p>
+</div>
+
+{% endif %}
+{% endblock %}
