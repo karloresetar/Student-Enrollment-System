@@ -6,6 +6,24 @@ This project is a student enrollment system. The system consists of three roles:
 
 ## Project Preview
 
+### Admin Portal
+
+<img src="./images/admin/adminhome.png" alt="Alt Text" width="1280">
+<img src="./images/admin/profesorlist.png" alt="Alt Text" width="1280">
+<img src="./images/admin/studentlist.png" alt="Alt Text" width="1280">
+
+### Professor portal
+
+<img src="./images/prof/Screenshot 2023-06-05 at 12-20-52 Moodle clone.png" alt="Alt Text" width="1280">
+
+
+
+### Student portal
+
+<img src="./images/student/Screenshot 2023-06-05 at 12-20-34 Moodle clone.png" alt="Alt Text" width="1280">
+
+
+
 ## Features
 
 ### Administrator Role
