@@ -6,6 +6,10 @@ This project is a student enrollment system. The system consists of three roles:
 
 ## Project Preview
 
+### Login Page
+
+<img src="./images/login/login.png" alt="Alt Text" width="1280">
+
 ### Admin Portal
 
 <img src="./images/admin/adminhome.png" alt="Alt Text" width="1280">
