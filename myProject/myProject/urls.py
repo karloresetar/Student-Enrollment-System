@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from myApp import views
 from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('',views.home, name='home'),
@@ -41,3 +42,5 @@ urlpatterns = [
     path('studentlistsubject/<int:predmet_id>/', views.studentlistsubject, name='studentlistsubject'),
     path('upisni/<int:student_id>/', views.upisni, name='upisni'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

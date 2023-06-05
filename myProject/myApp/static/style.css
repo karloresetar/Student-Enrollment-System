@@ -226,11 +226,11 @@ li a:hover {
 /* rgb(216, 152, 189); stara boja za border */
 
 .zasebni-box:nth-child(1) .img-podrucje{
-    background-image: url(../img/1.jpg);
+    background-image: url(/static/media/subjects.png);
 }
 
 .zasebni-box:nth-child(2) .img-podrucje{
-    background-image: url(../img/2.jpg);
+    background-image: url(/static/media/users.png);
 }
 
 .header-text{
