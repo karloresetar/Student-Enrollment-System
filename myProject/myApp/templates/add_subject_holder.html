@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 {% csrf_token %}
 <div class="main-section">
     {% if request.user.role|lower == 'admin' %}
@@ -9,18 +10,24 @@
 
     <h4>Empty</h4>
 
-    {% else %}
+    {% elif selected_professor %}
 
-    <p>Professor has been selected!</p>
+    <p style="color:rgb(219, 149, 84); text-transform:uppercase; font-weight:600">Professor {{selected_professor.first_name}} {{selected_professor.last_name}} - {{selected_professor}} has been selected!</p>
+    {% else %}
+    <p style="color:rgb(219, 149, 84); text-transform:uppercase; font-weight:600">Professor has not been selected!</p>
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
         <p>Select professor:
             <select name="profesor">
                 <option>----</option>
                 {% for profesor in profesori %}
-                <option {% if profesor.id == predmet.nositelj.id %} selected {% endif %}> {{profesor}}</option>
+                    {% if profesor.id != selected_professor.id %}
+                        <option value="{{ profesor.id }}">{{ profesor }}</option>
+                    {% endif %}
                 {% endfor %}
-            </select>
+            </select>                               
         <input type="hidden" name="profz" value="{{ profesor}}"/>
         <input type="submit" value="Add professor"/>
         </p>
@@ -28,7 +35,6 @@
     </form>
 </div>
 {% csrf_token %}
-{% endif %}
 {% else %}
     
     <div class="main-section">

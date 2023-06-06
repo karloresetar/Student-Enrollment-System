@@ -6,28 +6,23 @@
 <h3>Upisali:</h3>
 {% for upis in upisani %}
     {% if upis.status == 'upisan' %}
-        <p>{{upis.student}}  &nbsp;{{upis.student.email}}</p>
+        <p style="color: rgb(10, 178, 190);">{{upis.student}}  &nbsp;{{upis.student.email}}</p>
     {% endif %}
 {% endfor %}
 
 <h3>Polozili:</h3>
 {% for upis in upisani %}
     {% if upis.status == 'polozen' %}
-        <p>{{upis.student.username}} &nbsp;{{upis.student.email}} </p>
+        <p style="color: rgb(16, 190, 10);">{{upis.student.username}} &nbsp;{{upis.student.email}} </p>
     {% endif %}
 {% endfor %}
 
 <h3>Izgubili pravo:</h3>
 {% for upis in upisani %}
     {% if upis.status == 'izgubio/la pravo' %}
-        <p>{{upis.student.username}} &nbsp;{{upis.student.email}} </p>
+        <p style="color: rgb(206, 47, 47);">{{upis.student.username}} &nbsp;{{upis.student.email}} </p>
     {% endif %}
 {% endfor %}
-
-<div>
-    <p>Back to: <a href="{% url 'subjectlist' %}">Subject List</a></p>
-</div>
-
 {% else %}
 
 <div class="main-section">

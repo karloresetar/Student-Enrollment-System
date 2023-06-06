@@ -132,7 +132,7 @@
                 {% for _ in range %}          
                     {% for upis in upisni %}
                         {% if upis.subject.sem_red == forloop.parentloop.counter and upis.status == 'izgubio/la pravo' %}                   
-                            <p style="color: rgb(190, 10, 10);">Semestar {{forloop.parentloop.counter}} - {{upis.subject}} 
+                            <p style="color: rgb(206, 47, 47);">Semestar {{forloop.parentloop.counter}} - {{upis.subject}} 
                             <a href="{% url 'subjectdetails' upis.subject.id %}">Details</a></p>               
                         {% endif %}
                     {% endfor %}

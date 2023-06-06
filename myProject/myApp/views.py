@@ -97,11 +97,13 @@ def addSubjectHolder(request, id):
     predmet = get_object_or_404(Predmeti, id=id)
     roles = Uloge.objects.get(role='profesor')
     profesori = Korisnik.objects.filter(role=roles)
+    selected_professor = predmet.nositelj
 
     if request.method == 'GET':
         data = {
             'predmet': predmet,
-            'profesori': profesori
+            'profesori': profesori,
+            'selected_professor': selected_professor
         }
         return render(request, 'add_subject_holder.html', data)
 
@@ -109,7 +111,7 @@ def addSubjectHolder(request, id):
         nositelj = request.POST['profesor']
         if nositelj == '----':
             return redirect('subjectlist')
-        nositeljUser = Korisnik.objects.filter(username=nositelj).first()
+        nositeljUser = Korisnik.objects.filter(id=nositelj).first()
         if nositeljUser:
             predmet.nositelj = nositeljUser
             predmet.save()
@@ -121,6 +123,7 @@ def addSubjectHolder(request, id):
     else:
         messages.error(request, 'Something went wrong')
         return redirect('subjectlist')
+
 #Subject section -----
 
 
