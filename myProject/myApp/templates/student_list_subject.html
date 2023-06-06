@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 
 {% if request.user.role|lower == 'admin' or request.user.role|lower == 'profesor' and predmet.nositelj.id == request.user.id %}
-<h2>Popis studenata koji su upisali ili polozili predmet {{predmet.name}} </h2>
+<h2 style="text-align:center;">Popis studenata koji su upisali, polozili ili izgubili pravo na predmet<br> {{predmet.name}} </h2>
 
 <h3>Upisali:</h3>
 {% for upis in upisani %}
     {% if upis.status == 'upisan' %}
        
         <form method="post">
-            <p>{{upis.student.username}}  &nbsp;{{upis.student.email}}
+            <p style="color: rgb(10, 178, 190);">{{upis.student.username}}  &nbsp;{{upis.student.email}}
             {% csrf_token %}
             <input type="hidden" name="student_id" value="{{ upis.student.id }}" />
             <button class='btn-pass' type="submit" name="status" value="polozen">Položio/la</button>
@@ -23,7 +23,7 @@
 {% for upis in upisani %}
     {% if upis.status == 'polozen' %}
         <form method="post">
-            <p>{{upis.student}}  &nbsp;{{upis.student.email}}
+            <p style="color: rgb(16, 190, 10);">{{upis.student}}  &nbsp;{{upis.student.email}}
             {% csrf_token %}
             <input type="hidden" name="student_id" value="{{ upis.student.id }}" />
             <button class='btn-return' type="submit" name="status" value="upisan">Vrati u upis</button>
@@ -37,7 +37,7 @@
 {% for upis in upisani %}
     {% if upis.status == 'izgubio/la pravo' %}
         <form method="post">
-            <p>{{upis.student}}  &nbsp;{{upis.student.email}}
+            <p style="color: rgb(206, 47, 47);">{{upis.student}}  &nbsp;{{upis.student.email}}
             {% csrf_token %}
             <input type="hidden" name="student_id" value="{{ upis.student.id }}" />
             <button class='btn-return' type="submit" name="status" value="upisan">Vrati u upis</button>
