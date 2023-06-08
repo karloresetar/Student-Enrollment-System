@@ -1,14 +1,16 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 
 # Create your views here.
-
+@login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
+
 # Add section -----
+@login_required(login_url='login')
 def adduser(request):
     message = None
 
@@ -25,7 +27,7 @@ def adduser(request):
 
     return render(request, 'add_user.html', {'form': form, 'message': message})
 
-
+@login_required(login_url='login')
 def addsubject(request):
     message = None
     if request.method == 'GET':
@@ -44,16 +46,18 @@ def addsubject(request):
 # Add section -----
 
 #Subject section -----
+@login_required(login_url='login')
 def subjectlist(request):
     predmeti = Predmeti.objects.all()
     return render(request,'subject_list.html',{'predmeti':predmeti})
 
+@login_required(login_url='login')
 def subjectdetails(request, id):
     predmet = Predmeti.objects.get(id=id)
     korisnik = predmet.nositelj  # Za ispisivanje usera tj imena i prezimena profesora
     return render(request, "subject_details.html", {'predmet': predmet, 'korisnik': korisnik})
 
-
+@login_required(login_url='login')
 def editsubject(request, id):
     predmet = Predmeti.objects.get(id=id)
     form = PredmetiForm(instance=predmet)
@@ -69,7 +73,7 @@ def editsubject(request, id):
 
     return render(request, "edit_subject.html", {'form': form})
 
-
+@login_required(login_url='login')
 def deletesubject(request, id):
     predmet = Predmeti.objects.get(id=id)
     if request.method == 'POST':
@@ -82,17 +86,22 @@ def deletesubject(request, id):
     return render(request, "delete_subject.html", {'subject': predmet})
 
 
+@login_required(login_url='login')
 def students_subject(request,predmet_id):
     predmet=Predmeti.objects.get(id = predmet_id)
     upis = Upisi.objects.filter(subject=predmet)
     return render(request, "students_subject.html", {'upisani': upis, "predmet": predmet})
 
+
+@login_required(login_url='login')
 def profesorsubjects(request, profesor_id):
     predmeti = Predmeti.objects.filter(nositelj = profesor_id)
     profesor = Korisnik.objects.get(id = profesor_id)
     return render(request, "profesor_subjects.html", {'predmeti': predmeti, 'profesor': profesor})
 
+
 # Nositelj
+@login_required(login_url='login')
 def addSubjectHolder(request, id):
     predmet = get_object_or_404(Predmeti, id=id)
     roles = Uloge.objects.get(role='profesor')
@@ -128,18 +137,21 @@ def addSubjectHolder(request, id):
 
 
 #Student, professor (User) section -----
+@login_required(login_url='login')
 def studentlist(request):
     users = Korisnik.objects.all()
     students = users.filter(role__role='student')
     return render(request, "student_list.html", {'users': users, 'students': students})
             
 
+@login_required(login_url='login')
 def profesorlist(request):
     users = Korisnik.objects.all()
     professors = users.filter(role__role='profesor')
     return render(request,'profesor_list.html',{'users':users,'professors':professors})
 
 
+@login_required(login_url='login')
 def edituser(request, id):
     user = Korisnik.objects.get(id=id)
     form = UserFormEdit(instance=user)
@@ -163,7 +175,7 @@ def edituser(request, id):
 
 
 
-
+@login_required(login_url='login')
 def deleteuser(request, id):
     user = Korisnik.objects.get(id=id)
     if request.method == 'POST':
@@ -186,6 +198,7 @@ def deleteuser(request, id):
 
 
 #Upisni CRUD section -----
+@login_required(login_url='login')
 def createupis(student_id, predmet_id, status):
     student = Korisnik.objects.get(id=student_id)
     predmet = Predmeti.objects.get(id=predmet_id)
@@ -195,10 +208,14 @@ def createupis(student_id, predmet_id, status):
     
     Upisi.objects.create(student=student, subject=predmet, status=status)
 
+
+@login_required(login_url='login')
 def deleteupis(student_id,predmet_id):
     upis = Upisi.objects.filter(student = student_id, subject = predmet_id)
     upis.delete()
 
+
+@login_required(login_url='login')
 def upisni(request,student_id):
     predmeti = Predmeti.objects.all()
     student = Korisnik.objects.get(id = student_id)
@@ -225,12 +242,14 @@ def upisni(request,student_id):
 
 
 
-
+@login_required(login_url='login')
 def updateupis(student_id,predmet_id,status):
     upis = Upisi.objects.get(student=student_id, subject=predmet_id)
     upis.status = status
     upis.save()
 
+
+@login_required(login_url='login')
 def studentlistsubject(request,predmet_id):
     predmet = Predmeti.objects.get(id=predmet_id)
     upis = Upisi.objects.filter(subject=predmet)
