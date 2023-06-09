@@ -10,7 +10,6 @@ def home(request):
     return render(request, 'home.html')
 
 # Add section -----
-@login_required(login_url='login')
 def adduser(request):
     message = None
 
@@ -198,7 +197,6 @@ def deleteuser(request, id):
 
 
 #Upisni CRUD section -----
-@login_required(login_url='login')
 def createupis(student_id, predmet_id, status):
     student = Korisnik.objects.get(id=student_id)
     predmet = Predmeti.objects.get(id=predmet_id)
@@ -209,7 +207,7 @@ def createupis(student_id, predmet_id, status):
     Upisi.objects.create(student=student, subject=predmet, status=status)
 
 
-@login_required(login_url='login')
+
 def deleteupis(student_id,predmet_id):
     upis = Upisi.objects.filter(student = student_id, subject = predmet_id)
     upis.delete()
@@ -242,7 +240,7 @@ def upisni(request,student_id):
 
 
 
-@login_required(login_url='login')
+
 def updateupis(student_id,predmet_id,status):
     upis = Upisi.objects.get(student=student_id, subject=predmet_id)
     upis.status = status
